@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "Tokens.h"
 #include "Nodes.h"
@@ -17,7 +18,7 @@ using std::vector;
 class Parser {
     vector<Token>::iterator begin, it, end;
 public:
-    Node *res;
+    shared_ptr<Node> res;
 
     explicit Parser(vector<Token> &_tokens) {
         begin = it = _tokens.begin();
@@ -36,8 +37,8 @@ public:
         return false;
     }
 
-    Node *expr() {
-        Node *result = term();
+    shared_ptr<Node> expr() {
+        shared_ptr<Node> result = term();
         while (it != end && (it->TokenType == PLUS || it->TokenType == MINUS)) {
             if (it->TokenType == PLUS) {
                 ++it;
@@ -50,8 +51,8 @@ public:
         return result;
     }
 
-    Node *term() {
-        Node *result = factor();
+    shared_ptr<Node> term() {
+        shared_ptr<Node> result = factor();
         while (it != end && (it->TokenType == MULTIPLY || it->TokenType == DIVIDE)) {
             if (it->TokenType == MULTIPLY) {
                 ++it;
@@ -64,21 +65,21 @@ public:
         return result;
     }
 
-    Node *factor() {
+    shared_ptr<Node> factor() {
         if (it->TokenType == LPAREN) {
             ++it;
-            Node* node = expr();
+            shared_ptr<Node> node = expr();
             if (it->TokenType != RPAREN)
                 throw std::runtime_error("error: bad parenthesis\n");
             ++it;
             return node;
         } else if (it->TokenType == NUMBER) {
-            Node *number_node = make_node(Convert::to_int(it->value));
+            shared_ptr<Node> number_node = make_node(Convert::to_int(it->value));
             ++it;
             return number_node;
         } else if (it->TokenType == MINUS) {
             ++it;
-            Node *number_node = make_node(make_node(-1), factor(), '*');
+            shared_ptr<Node> number_node = make_node(make_node(-1), factor(), '*');
             return number_node;
         }
         throw std::runtime_error("error: wrong expression\n");

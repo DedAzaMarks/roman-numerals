@@ -20,7 +20,7 @@ bool is_operator(char c) {
     return false;
 }
 
-void print(Node* node) {
+void print(shared_ptr<Node> node) {
     if (node == nullptr) {
         return;
     }
@@ -32,14 +32,6 @@ void print(Node* node) {
         cout << node->value;
     print(node->r);
     cout << ")";
-}
-
-void clear(Node *node) {
-    if (node == nullptr)
-        return;
-    clear(node->l);
-    clear(node->r);
-    delete node;
 }
 
 int main() {
@@ -56,9 +48,8 @@ int main() {
                 cout << "error: wrong expression\n";
                 continue;;
             }
-            Node* tree = parser.res;
+            shared_ptr<Node> tree = parser.res;
             print(tree); cout << " = " << evaluate(tree) << " " << Convert::to_roman(evaluate(tree)) << "\n";
-            clear(tree);
         } catch (const std::exception& e) {
             cout << e.what();
         }

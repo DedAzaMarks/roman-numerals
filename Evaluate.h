@@ -7,7 +7,7 @@
 
 #include "Nodes.h"
 
-int64_t evaluate(Node* node) {
+int64_t evaluate(shared_ptr<Node> node) {
     if (node->op == '\0')
         return node->value;
     else if (node->op == '+')
