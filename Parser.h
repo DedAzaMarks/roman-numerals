@@ -81,7 +81,7 @@ public:
             Node *number_node = make_node(make_node(-1), factor(), '*');
             return number_node;
         }
-        return nullptr;
+        throw std::runtime_error("error: wrong expression\n");
     }
 };
 
