@@ -8,7 +8,6 @@ include_directories(.)
 add_executable(roman_numerals
         main.cpp
         Convert.cpp
-        Evaluate.cpp
         Lexer.cpp
         Parser.cpp
         Node.cpp)

@@ -5,6 +5,8 @@
 #include "Parser.h"
 #include "Convert.h"
 
+using std::make_shared;
+
 Parser::Parser(vector<Token> &_tokens) {
   it = _tokens.begin();
   end = _tokens.end();
@@ -27,10 +29,10 @@ shared_ptr<Node> Parser::expr() {
   while (it != end && (it->TokenType == PLUS || it->TokenType == MINUS)) {
     if (it->TokenType == PLUS) {
       ++it;
-      result = make_node(result, term(), '+');
+      result = make_shared<AddNode>(result, term());
     } else if (it->TokenType == MINUS) {
       ++it;
-      result = make_node(result, term(), '-');
+      result = make_shared<SubNode>(result, term());
     }
   }
   return result;
@@ -41,10 +43,10 @@ shared_ptr<Node> Parser::term() {
   while (it != end && (it->TokenType == MULTIPLY || it->TokenType == DIVIDE)) {
     if (it->TokenType == MULTIPLY) {
       ++it;
-      result = make_node(result, factor(), '*');
+      result = make_shared<MulNide>(result, factor());
     } else if (it->TokenType == DIVIDE) {
       ++it;
-      result = make_node(result, factor(), '/');
+      result = make_shared<DivNode>(result, factor());
     }
   }
   return result;
@@ -59,13 +61,13 @@ shared_ptr<Node> Parser::factor() {
     ++it;
     return node;
   } else if (it->TokenType == NUMBER) {
-    shared_ptr<Node> number_node = make_node(Convert::to_int(it->value));
+    shared_ptr<NumberNode> number_node = make_shared<NumberNode>(Convert::to_int(it->value));
     ++it;
     return number_node;
   } else if (it->TokenType == MINUS) {
     ++it;
-    shared_ptr<Node> number_node = make_node(make_node(-1), factor(), '*');
-    return number_node;
+    shared_ptr<MinusNode> minus_node = make_shared<MinusNode>(factor());
+    return minus_node;
   }
   throw std::runtime_error("error: wrong expression\n");
 }

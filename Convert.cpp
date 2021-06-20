@@ -2,6 +2,8 @@
 // Created by Maxim Bordyugov on 16/06/2021.
 //
 
+#include <stdexcept>
+
 #include "Convert.h"
 
 const vector<string> Convert::thousands{"", "M", "MM", "MMM"};
@@ -21,8 +23,8 @@ int Convert::symbol(char c) {
   return -1;
 }
 
-int64_t Convert::to_int(string &str) {
-  int64_t res = 0;
+long long int Convert::to_int(string &str) {
+  long long int res = 0;
   size_t i = (str[0] == '-') ? 1 : 0;
   if (str == "Z") return 0;
   for (; i < str.length(); ++i) {
@@ -44,13 +46,13 @@ int64_t Convert::to_int(string &str) {
   return res;
 }
 
-string Convert::to_roman(int64_t y) {
+string Convert::to_roman(long long int y) {
   if (y == 0) return "Z";
   if (std::abs(y) >= 4000)
     throw std::overflow_error("error: integer " + std::to_string(y)
                                   + " cannot be represented in roman numerals."
                                   + " Allowed integers are [-3999, 3999]\n");
-  int64_t x = (y < 0) ? -y : y;
+  long long int x = (y < 0) ? -y : y;
   string ans = thousands[x / 1000] + hundreds[(x % 1000) / 100] + tens[(x % 100) / 10] + ones[x % 10];
   if (y < 0) {
     ans = "-" + ans;

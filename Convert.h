@@ -19,8 +19,8 @@ class Convert {
 
  public:
   static int symbol(char c);
-  static int64_t to_int(string &str);
-  static string to_roman(int64_t x);
+  static long long int to_int(string &str);
+  static string to_roman(long long int x);
 };
 
 #endif //ROMAN_NUMERALS_CONVERT_H
