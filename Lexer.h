@@ -7,6 +7,7 @@
 #include <iterator>
 
 #include "Tokens.h"
+#include "Convert.h"
 
 using std::string;
 using std::vector;
@@ -15,53 +16,17 @@ using std::vector;
 #define ROMAN_NUMERALS_LEXER_H
 
 class Lexer {
-private:
-    string& str;
+ private:
+  string &str;
 
-    static bool is_operator(char c) {
-        if (c == '+' || c == '-' || c == '*' || c == '/')
-            return true;
-        return false;
-    }
+  static bool is_operator(char c);
 
-public:
-    vector<Token> tokens;
+ public:
+  vector<Token> tokens;
 
-    explicit Lexer(string &_str): str(_str) {
-    }
+  explicit Lexer(string &_str);
 
-    bool generate_tokens() {
-        for (size_t i = 0; i < str.length(); ++i) {
-            if (str[i] == '(') {
-                tokens.push_back({LPAREN, ""});
-            } else if (str[i] == ')') {
-                tokens.push_back({RPAREN, ""});
-            } else if (str[i] == '+') {
-                tokens.push_back({PLUS, ""});
-            } else if (str[i] == '-') {
-                tokens.push_back({MINUS, ""});
-            } else if (str[i] == '*') {
-                tokens.push_back({MULTIPLY, ""});
-            } else if (str[i] == '/') {
-                tokens.push_back({DIVIDE, ""});
-            } else if (str[i] != ' '){
-                string tmp;
-                auto j = i;
-                while (str[j] != '(' && str[j] != ')' &&
-                !is_operator(str[j]) && str[j] != ' ' && j != str.length()) {
-                    if (Convert::symbol(str[j]) == -1) {
-                        tokens.clear();
-                        return true;
-                    }
-                    tmp += str[j];
-                    ++j;
-                }
-                i = j-1;
-                tokens.push_back({NUMBER, tmp});
-            }
-        }
-        return false;
-    }
+  bool generate_tokens();
 };
 
 #endif //ROMAN_NUMERALS_LEXER_H
