@@ -5,20 +5,8 @@
 #ifndef ROMAN_NUMERALS_EVALUATE_H
 #define ROMAN_NUMERALS_EVALUATE_H
 
-#include "Nodes.h"
+#include "Node.h"
 
-int64_t evaluate(shared_ptr<Node> node) {
-    if (node->op == '\0')
-        return node->value;
-    else if (node->op == '+')
-        return evaluate(node->l) + evaluate(node->r);
-    else if (node->op == '-')
-        return evaluate(node->l) - evaluate(node->r);
-    else if (node->op == '*')
-        return evaluate(node->l) * evaluate(node->r);
-    else if (node->op == '/')
-        return evaluate(node->l) / evaluate(node->r);
-    return 0;
-}
+int64_t evaluate(const shared_ptr<Node> &node);
 
 #endif //ROMAN_NUMERALS_EVALUATE_H
