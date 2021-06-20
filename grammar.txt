@@ -1,0 +1,18 @@
+<ones> ::= I | II | III | e
+<five> ::= <ones>V | V<ones> | <ones>
+<ten3> ::= XX | XXX | e
+<ten>  ::= <ones>X | X<five> | <ten3><five> | <five><ten3> | <five>
+<fifty> ::= <ten>L | L<ten> | <ten>
+<hundred3> ::= C | CC | CCC
+<hundred> ::= <fifty><hundred3> | <hundred3><fifty> | <fifty>
+<half-thousand> ::= CD<hundred> | D<hundred> | <hundred>
+<thousand3> ::= M | MM | MMM
+<thousand> ::= <thousand3><half-thousand> | <half-thousand><thousand3> | <half-thousand>
+<roman> ::= <thousand> | Z
+
+<expression> ::= <roman> | -<expression> |
+                 <expression> + <expression> |
+                 <expression> - <expression> |
+                 <expression> * <expression> |
+                 <expression> / <expression> |
+                 ( <expression> )
