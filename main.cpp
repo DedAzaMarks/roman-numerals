@@ -14,45 +14,40 @@ using std::vector;
 using std::remove;
 using std::to_string;
 
-bool is_operator(char c) {
-    if (c == '+' || c == '-' || c == '*' || c == '/')
-        return true;
-    return false;
-}
-
-void print(shared_ptr<Node> node) {
-    if (node == nullptr) {
-        return;
-    }
-    cout << "(";
-    print(node->l);
-    if (node->op != '\0')
-        cout << node->op;
-    else
-        cout << node->value;
-    print(node->r);
-    cout << ")";
+void print(const shared_ptr<Node> &node) {
+  if (node == nullptr) {
+    return;
+  }
+  cout << "(";
+  print(node->l);
+  if (node->op != '\0')
+    cout << node->op;
+  else
+    cout << node->value;
+  print(node->r);
+  cout << ")";
 }
 
 int main() {
-    string str = "";
-    while (getline(cin, str)) {
-        Lexer lexer(str);
-        if (lexer.generate_tokens()) {
-            cout << "error: wrong input\n";
-            continue;
-        }
-        Parser parser(lexer.tokens);
-        try {
-            if (parser.parse()) {
-                cout << "error: wrong expression\n";
-                continue;;
-            }
-            shared_ptr<Node> tree = parser.res;
-            print(tree); cout << " = " << evaluate(tree) << " " << Convert::to_roman(evaluate(tree)) << "\n";
-        } catch (const std::exception& e) {
-            cout << e.what();
-        }
+  string str;
+  while (getline(cin, str)) {
+    Lexer lexer(str);
+    if (lexer.generate_tokens()) {
+      cout << "error: wrong input\n";
+      continue;
     }
-    return 0;
+    Parser parser(lexer.tokens);
+    try {
+      if (parser.parse()) {
+        cout << "error: wrong expression\n";
+        continue;
+      }
+      shared_ptr<Node> tree = parser.res;
+      int64_t ans = evaluate(tree);
+      cout << Convert::to_roman(ans) << "\n";
+    } catch (const std::exception &e) {
+      cout << e.what();
+    }
+  }
+  return 0;
 }
