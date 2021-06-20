@@ -3,4 +3,12 @@ project(roman_numerals)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(roman_numerals main.cpp Convert.cpp Convert.h Tokens.h Lexer.h Nodes.h Parser.h Evaluate.h)
+include_directories(.)
+
+add_executable(roman_numerals
+        main.cpp
+        Convert.cpp
+        Evaluate.cpp
+        Lexer.cpp
+        Parser.cpp
+        Node.cpp)
