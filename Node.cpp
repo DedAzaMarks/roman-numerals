@@ -19,6 +19,7 @@ long long int NumberNode::evaluate() {
 void NumberNode::print() {
   cout << val;
 }
+NumberNode::~NumberNode() = default;
 
 MinusNode::MinusNode(shared_ptr<Node> n) {
   node = std::move(n);
@@ -30,6 +31,7 @@ long long int MinusNode::evaluate() {
 void MinusNode::print() {
   node->print();
 }
+MinusNode::~MinusNode() = default;
 
 AddNode::AddNode(shared_ptr<Node> left, shared_ptr<Node> right) {
   l = std::move(left);
@@ -52,6 +54,7 @@ void AddNode::print() {
   r->print();
   cout << ")";
 }
+AddNode::~AddNode() = default;
 
 SubNode::SubNode(shared_ptr<Node> left, shared_ptr<Node> right) {
   l = std::move(left);
@@ -74,6 +77,7 @@ void SubNode::print() {
   r->print();
   cout << ")";
 }
+SubNode::~SubNode() = default;
 
 MulNode::MulNode(shared_ptr<Node> left, shared_ptr<Node> right) {
   l = std::move(left);
@@ -95,6 +99,9 @@ void MulNode::print() {
   cout << "*";
   r->print();
   cout << ")";
+}
+MulNode::~MulNode() {
+
 }
 
 DivNode::DivNode(shared_ptr<Node> left, shared_ptr<Node> right) {
@@ -119,3 +126,4 @@ void DivNode::print() {
   r->print();
   cout << ")";
 }
+DivNode::~DivNode() = default;
