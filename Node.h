@@ -52,11 +52,11 @@ class SubNode : public Node {
   void print() override;
 };
 
-class MulNide : public Node {
+class MulNode : public Node {
  private:
   shared_ptr<Node> l, r;
  public:
-  MulNide(shared_ptr<Node>, shared_ptr<Node>);
+  MulNode(shared_ptr<Node>, shared_ptr<Node>);
   long long int evaluate() override;
   void print() override;
 };

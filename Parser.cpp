@@ -43,7 +43,7 @@ shared_ptr<Node> Parser::term() {
   while (it != end && (it->TokenType == MULTIPLY || it->TokenType == DIVIDE)) {
     if (it->TokenType == MULTIPLY) {
       ++it;
-      result = make_shared<MulNide>(result, factor());
+      result = make_shared<MulNode>(result, factor());
     } else if (it->TokenType == DIVIDE) {
       ++it;
       result = make_shared<DivNode>(result, factor());

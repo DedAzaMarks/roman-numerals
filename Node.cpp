@@ -75,12 +75,12 @@ void SubNode::print() {
   cout << ")";
 }
 
-MulNide::MulNide(shared_ptr<Node> left, shared_ptr<Node> right) {
+MulNode::MulNode(shared_ptr<Node> left, shared_ptr<Node> right) {
   l = std::move(left);
   r = std::move(right);
 }
 
-long long int MulNide::evaluate() {
+long long int MulNode::evaluate() {
   long long int a = l->evaluate();
   long long int b = r->evaluate();
   long long int res;
@@ -89,7 +89,7 @@ long long int MulNide::evaluate() {
   }
   throw std::overflow_error("error: signed 64-bits overflow\n");
 }
-void MulNide::print() {
+void MulNode::print() {
   cout << "(";
   l->print();
   cout << "*";
