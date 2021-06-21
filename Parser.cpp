@@ -12,16 +12,14 @@ Parser::Parser(vector<Token> &_tokens) {
   end = _tokens.end();
 }
 
-bool Parser::parse() {
+void Parser::parse() {
   if (it == end)
-    return true;
+    throw std::runtime_error("error: wrong expression\n");
 
   res = expr();
 
   if (it != end)
-    return true;
-
-  return false;
+    throw std::runtime_error("error: wrong expression\n");
 }
 
 shared_ptr<Node> Parser::expr() {

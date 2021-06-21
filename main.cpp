@@ -16,17 +16,13 @@ using std::to_string;
 int main() {
   string str;
   while (getline(cin, str)) {
-    Lexer lexer(str);
-    if (lexer.generate_tokens()) {
-      cout << "error: wrong input\n";
-      continue;
-    }
-    Parser parser(lexer.tokens);
     try {
-      if (parser.parse()) {
-        cout << "error: wrong expression\n";
-        continue;
-      }
+      Lexer lexer(str);
+      lexer.generate_tokens();
+
+      Parser parser(lexer.tokens);
+      parser.parse();
+
       shared_ptr<Node> tree = parser.res;
       long long int ans = tree->evaluate();
       cout << Convert::to_roman(ans) << "\n";

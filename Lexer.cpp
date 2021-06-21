@@ -12,7 +12,7 @@ bool Lexer::is_operator(char c) {
 
 Lexer::Lexer(string &_str) : str(_str) {}
 
-bool Lexer::generate_tokens() {
+void Lexer::generate_tokens() {
   for (size_t i = 0; i < str.length(); ++i) {
     if (str[i] == '(') {
       tokens.push_back({LPAREN, ""});
@@ -33,7 +33,7 @@ bool Lexer::generate_tokens() {
           !is_operator(str[j]) && str[j] != ' ' && j != str.length()) {
         if (Convert::symbol(str[j]) == -1) {
           tokens.clear();
-          return true;
+          throw std::runtime_error("error: wrong expression\n");
         }
         tmp += str[j];
         ++j;
@@ -42,5 +42,4 @@ bool Lexer::generate_tokens() {
       tokens.push_back({NUMBER, tmp});
     }
   }
-  return false;
 }

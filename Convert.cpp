@@ -24,6 +24,9 @@ int Convert::symbol(char c) {
 }
 
 long long int Convert::to_int(string &str) {
+  if (str.empty()) {
+    throw std::runtime_error("error: wrong expression\n");
+  }
   long long int res = 0;
   size_t i = (str[0] == '-') ? 1 : 0;
   if (str == "Z") return 0;

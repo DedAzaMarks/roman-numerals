@@ -26,7 +26,7 @@ class Lexer {
 
   explicit Lexer(string &_str);
 
-  bool generate_tokens();
+  void generate_tokens();
 };
 
 #endif //ROMAN_NUMERALS_LEXER_H

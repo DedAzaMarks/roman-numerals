@@ -22,7 +22,7 @@ class Parser {
 
   explicit Parser(vector<Token> &_tokens);
 
-  bool parse();
+  void parse();
 
   shared_ptr<Node> expr();
 
