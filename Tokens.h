@@ -10,7 +10,6 @@
 using std::string;
 
 enum Type {
-  NONE      = 0,
   NUMBER    = 1,
   PLUS      = 2,
   MINUS     = 3,
