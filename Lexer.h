@@ -2,12 +2,12 @@
 // Created by Maxim Bordyugov on 18/06/2021.
 //
 
+#include <iterator>
 #include <string>
 #include <vector>
-#include <iterator>
 
-#include "Tokens.h"
 #include "Convert.h"
+#include "Tokens.h"
 
 using std::string;
 using std::vector;
@@ -16,12 +16,12 @@ using std::vector;
 #define ROMAN_NUMERALS_LEXER_H
 
 class Lexer {
- private:
+  private:
   string &str;
 
   static bool is_operator(char c);
 
- public:
+  public:
   vector<Token> tokens;
 
   explicit Lexer(string &_str);
@@ -29,4 +29,4 @@ class Lexer {
   void generate_tokens();
 };
 
-#endif //ROMAN_NUMERALS_LEXER_H
+#endif  // ROMAN_NUMERALS_LEXER_H

@@ -2,14 +2,17 @@
 // Created by Maxim Bordyugov on 16/06/2021.
 //
 
-#include <stdexcept>
-
 #include "Convert.h"
 
+#include <stdexcept>
+
 const vector<string> Convert::thousands{"", "M", "MM", "MMM"};
-const vector<string> Convert::hundreds{"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-const vector<string> Convert::tens{"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-const vector<string> Convert::ones{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+const vector<string> Convert::hundreds{
+    "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+const vector<string> Convert::tens{
+    "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+const vector<string> Convert::ones{
+    "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 
 int Convert::symbol(char c) {
   if (c == 'Z') return 0;
@@ -44,19 +47,20 @@ long long int Convert::to_int(string &str) {
       res += cur;
     }
   }
-  if (str[0] == '-')
-    res = -res;
+  if (str[0] == '-') res = -res;
   return res;
 }
 
 string Convert::to_roman(long long int y) {
   if (y == 0) return "Z";
   if (std::abs(y) >= 4000)
-    throw std::overflow_error("error: integer " + std::to_string(y)
-                                  + " cannot be represented in roman numerals."
-                                  + " Allowed integers are [-3999, 3999]\n");
+    throw std::overflow_error(
+        "error: integer " + std::to_string(y) +
+        " cannot be represented in roman numerals." +
+        " Allowed integers are [-3999, 3999]\n");
   long long int x = (y < 0) ? -y : y;
-  string ans = thousands[x / 1000] + hundreds[(x % 1000) / 100] + tens[(x % 100) / 10] + ones[x % 10];
+  string ans = thousands[x / 1000] + hundreds[(x % 1000) / 100] +
+      tens[(x % 100) / 10] + ones[x % 10];
   if (y < 0) {
     ans = "-" + ans;
   }

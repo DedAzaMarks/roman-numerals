@@ -5,19 +5,20 @@
 #ifndef ROMAN_NUMERALS_PARSER_H
 #define ROMAN_NUMERALS_PARSER_H
 
-#include <vector>
-#include <string>
 #include <memory>
+#include <string>
+#include <vector>
 
-#include "Tokens.h"
 #include "Node.h"
+#include "Tokens.h"
 
 using std::string;
 using std::vector;
 
 class Parser {
   vector<Token>::iterator it, end;
- public:
+
+  public:
   shared_ptr<Node> res;
 
   explicit Parser(vector<Token> &_tokens);
@@ -31,4 +32,4 @@ class Parser {
   shared_ptr<Node> factor();
 };
 
-#endif //ROMAN_NUMERALS_PARSER_H
+#endif  // ROMAN_NUMERALS_PARSER_H

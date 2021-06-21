@@ -11,16 +11,16 @@ using std::string;
 using std::vector;
 
 class Convert {
- private:
+  private:
   static const vector<string> thousands;
   static const vector<string> hundreds;
   static const vector<string> tens;
   static const vector<string> ones;
 
- public:
+  public:
   static int symbol(char c);
   static long long int to_int(string &str);
   static string to_roman(long long int x);
 };
 
-#endif //ROMAN_NUMERALS_CONVERT_H
+#endif  // ROMAN_NUMERALS_CONVERT_H

@@ -2,11 +2,11 @@
 // Created by Maxim Bordyugov on 18/06/2021.
 //
 
-#include <stdexcept>
-#include <iostream>
-#include <utility>
-
 #include "Node.h"
+
+#include <iostream>
+#include <stdexcept>
+#include <utility>
 
 using std::cout;
 
@@ -101,9 +101,7 @@ void MulNode::print() {
   r->print();
   cout << ")";
 }
-MulNode::~MulNode() {
-
-}
+MulNode::~MulNode() {}
 
 DivNode::DivNode(shared_ptr<Node> left, shared_ptr<Node> right) {
   l = std::move(left);

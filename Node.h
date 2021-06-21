@@ -11,16 +11,17 @@
 using std::shared_ptr;
 
 class Node {
- public:
+  public:
   virtual long long int evaluate() = 0;
   virtual void print() = 0;
   virtual ~Node() = default;
 };
 
 class NumberNode : public Node {
- private:
+  private:
   long long int val;
- public:
+
+  public:
   explicit NumberNode(long long int);
   ~NumberNode() override;
   long long int evaluate() override;
@@ -28,9 +29,10 @@ class NumberNode : public Node {
 };
 
 class MinusNode : public Node {
- private:
+  private:
   shared_ptr<Node> node;
- public:
+
+  public:
   explicit MinusNode(shared_ptr<Node>);
   ~MinusNode() override;
   long long int evaluate() override;
@@ -38,9 +40,10 @@ class MinusNode : public Node {
 };
 
 class AddNode : public Node {
- private:
+  private:
   shared_ptr<Node> l, r;
- public:
+
+  public:
   AddNode(shared_ptr<Node>, shared_ptr<Node>);
   ~AddNode() override;
   long long int evaluate() override;
@@ -48,9 +51,10 @@ class AddNode : public Node {
 };
 
 class SubNode : public Node {
- private:
+  private:
   shared_ptr<Node> l, r;
- public:
+
+  public:
   SubNode(shared_ptr<Node>, shared_ptr<Node>);
   ~SubNode() override;
   long long int evaluate() override;
@@ -58,9 +62,10 @@ class SubNode : public Node {
 };
 
 class MulNode : public Node {
- private:
+  private:
   shared_ptr<Node> l, r;
- public:
+
+  public:
   MulNode(shared_ptr<Node>, shared_ptr<Node>);
   ~MulNode() override;
   long long int evaluate() override;
@@ -68,13 +73,14 @@ class MulNode : public Node {
 };
 
 class DivNode : public Node {
- private:
+  private:
   shared_ptr<Node> l, r;
- public:
+
+  public:
   DivNode(shared_ptr<Node>, shared_ptr<Node>);
   ~DivNode() override;
   long long int evaluate() override;
   void print() override;
 };
 
-#endif //ROMAN_NUMERALS_NODES_H
+#endif  // ROMAN_NUMERALS_NODES_H

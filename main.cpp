@@ -8,10 +8,10 @@
 
 using std::cin;
 using std::cout;
-using std::string;
-using std::vector;
 using std::remove;
+using std::string;
 using std::to_string;
+using std::vector;
 
 int main() {
   string str;

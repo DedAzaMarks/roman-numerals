@@ -2,13 +2,12 @@
 // Created by Maxim Bordyugov on 18/06/2021.
 //
 
-#include <stdexcept>
-
 #include "Lexer.h"
 
+#include <stdexcept>
+
 bool Lexer::is_operator(char c) {
-  if (c == '+' || c == '-' || c == '*' || c == '/')
-    return true;
+  if (c == '+' || c == '-' || c == '*' || c == '/') return true;
   return false;
 }
 
@@ -31,8 +30,8 @@ void Lexer::generate_tokens() {
     } else if (str[i] != ' ') {
       string tmp;
       auto j = i;
-      while (str[j] != '(' && str[j] != ')' &&
-          !is_operator(str[j]) && str[j] != ' ' && j != str.length()) {
+      while (str[j] != '(' && str[j] != ')' && !is_operator(str[j]) &&
+             str[j] != ' ' && j != str.length()) {
         if (Convert::symbol(str[j]) == -1) {
           tokens.clear();
           throw std::runtime_error("error: wrong expression\n");
