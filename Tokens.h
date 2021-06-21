@@ -10,13 +10,14 @@
 using std::string;
 
 enum Type {
-  NUMBER    = 0,
-  PLUS      = 1,
-  MINUS     = 2,
-  MULTIPLY  = 3,
-  DIVIDE    = 4,
-  LPAREN    = 5,
-  RPAREN    = 6
+  NONE      = 0,
+  NUMBER    = 1,
+  PLUS      = 2,
+  MINUS     = 3,
+  MULTIPLY  = 4,
+  DIVIDE    = 5,
+  LPAREN    = 6,
+  RPAREN    = 7
 };
 
 struct Token {
