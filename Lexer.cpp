@@ -2,6 +2,8 @@
 // Created by Maxim Bordyugov on 18/06/2021.
 //
 
+#include <stdexcept>
+
 #include "Lexer.h"
 
 bool Lexer::is_operator(char c) {
@@ -15,17 +17,17 @@ Lexer::Lexer(string &_str) : str(_str) {}
 void Lexer::generate_tokens() {
   for (size_t i = 0; i < str.length(); ++i) {
     if (str[i] == '(') {
-      tokens.push_back({LPAREN, ""});
+      tokens.push_back({Type::LPAREN, ""});
     } else if (str[i] == ')') {
-      tokens.push_back({RPAREN, ""});
+      tokens.push_back({Type::RPAREN, ""});
     } else if (str[i] == '+') {
-      tokens.push_back({PLUS, ""});
+      tokens.push_back({Type::PLUS, ""});
     } else if (str[i] == '-') {
-      tokens.push_back({MINUS, ""});
+      tokens.push_back({Type::MINUS, ""});
     } else if (str[i] == '*') {
-      tokens.push_back({MULTIPLY, ""});
+      tokens.push_back({Type::MULTIPLY, ""});
     } else if (str[i] == '/') {
-      tokens.push_back({DIVIDE, ""});
+      tokens.push_back({Type::DIVIDE, ""});
     } else if (str[i] != ' ') {
       string tmp;
       auto j = i;
@@ -39,7 +41,7 @@ void Lexer::generate_tokens() {
         ++j;
       }
       i = j - 1;
-      tokens.push_back({NUMBER, tmp});
+      tokens.push_back({Type::NUMBER, tmp});
     }
   }
 }

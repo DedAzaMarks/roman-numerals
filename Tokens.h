@@ -9,7 +9,7 @@
 
 using std::string;
 
-enum Type {
+enum class Type {
   NUMBER    = 1,
   PLUS      = 2,
   MINUS     = 3,

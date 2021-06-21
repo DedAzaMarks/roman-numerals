@@ -2,10 +2,11 @@
 // Created by Maxim Bordyugov on 18/06/2021.
 //
 
-#include "Node.h"
-
+#include <stdexcept>
 #include <iostream>
 #include <utility>
+
+#include "Node.h"
 
 using std::cout;
 
