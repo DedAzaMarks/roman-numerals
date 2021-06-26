@@ -115,6 +115,15 @@ long long int DivNode::evaluate() {
     throw std::runtime_error("error: division by zero\n");
   }
   long long int res = a / b;
+  if (a < 0 && b > 0) {
+    // -5 / 2 = -3
+    if (res * b > a)
+      --res;
+  } else if (a > 0 && b < 0) {
+    // 5 / -2 = -3
+    if (res * b < a)
+      --res;
+  }
   return res;
 }
 
